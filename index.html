@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangladesh e-Return Calculator 2025-2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '.sshihabb007_dark_mode'],
+            theme: {
+                extend: {
+                    colors: {
+                        'mehedi-primary': '#006a4e',
+                        'mehedi-accent': '#16a34a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .mehedi-card {
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .sshihabb007-input {
+            transition: all 0.2s ease-in-out;
+        }
+        .sshihabb007-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #006a4e;
+            border-color: #006a4e;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        .sshihabb007_dark_mode ::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-gray-100 transition-colors duration-300 min-h-screen pb-20">
+    
+    <div id="sshihabb007_wrapper" class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 pt-10">
+        
+        <!-- Theme Toggle Button -->
+        <div class="flex justify-end mb-4">
+            <button onclick="mehedi_toggle_theme()" class="sshihabb007-btn-theme p-3 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-mehedi-primary">
+                🌙 / ☀️
+            </button>
+        </div>
+
+        <header class="text-center mb-8">
+            <h1 class="text-mehedi-primary dark:text-green-400 text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">Bangladesh e-Return (Full Detail)</h1>
+            <p class="text-gray-500 dark:text-gray-400 text-lg">Assessment Year: 2025-2026</p>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="sshihabb007-progress-container w-full bg-gray-200 dark:bg-gray-700 h-2 rounded mb-8 overflow-hidden">
+            <div id="shihab_step_indicator" class="h-2 w-1/6 bg-mehedi-accent transition-all duration-500 ease-in-out"></div>
+        </div>
+
+        <!-- Section 1: Assessment Info -->
+        <section id="shihab_section_1" class="mehedi-card bg-white dark:bg-gray-800 transform transition-all duration-500">
+            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">Assessment Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <label class="block">
+                    <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Name of the Taxpayer</span>
+                    <input type="text" value="MD. MEHEDI HASAN SHIHAB" class="sshihabb007-input w-full mt-1 p-2 border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800">
+                </label>
+                <label class="block">
+                    <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">TIN</span>
+                    <input type="text" value="636171778047" class="sshihabb007-input w-full mt-1 p-2 border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800">
+                </label>
+                <label class="block">
+                    <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Gender/Status</span>
+                    <select id="mehedi_taxpayer_status" class="sshihabb007-input w-full mt-1 p-2 border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800">
+                        <option value="general">General (3.5L Threshold)</option>
+                        <option value="female">Female/Senior 65+ (4L Threshold)</option>
+                    </select>
+                </label>
+            </div>
+            <div class="mt-8 flex justify-end">
+                <button onclick="sshihabb007_next_step(2)" class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-bold shadow-md">Next: Income</button>
+            </div>
+        </section>
+
+        <!-- Section 2: Income -->
+        <section id="shihab_section_2" class="mehedi-card bg-white dark:bg-gray-800 transform transition-all duration-500" style="display: none;">
+            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">Income Sources</h2>
+            
+            <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-4 text-lg">Schedule 1: Particulars of Income from Employment</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8 bg-gray-50 dark:bg-slate-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                <script>
+                    const salaryFields = [
+                        { id: 'sal_basic', label: '1. Basic pay', default: 252000 },
+                        { id: 'sal_allowances', label: '2. Allowances', default: 208000 },
+                        { id: 'sal_arrear', label: '3. Advance / Arrear Salary', default: 0 },
+                        { id: 'sal_gratuity', label: '4. Gratuity, Annuity, Pension', default: 0 },
+                        { id: 'sal_perquisites', label: '5. Perquisites', default: 0 },
+                        { id: 'sal_receipt', label: '6. Receipt in lieu of Salary', default: 0 },
+                        { id: 'sal_share_scheme', label: '7. Income from Employee’s Share Scheme', default: 0 },
+                        { id: 'sal_accommodation', label: '8. Accommodation Facility', default: 0 },
+                        { id: 'sal_transport', label: '9. Transport Facility', default: 0 },
+                        { id: 'sal_other_facility', label: '10. Any other Facility', default: 0 },
+                        { id: 'sal_provident', label: '11. Employer’s Contribution to RPF', default: 0 },
+                        { id: 'sal_others', label: '12. Others', default: 0 }
+                    ];
+                    salaryFields.forEach(field => {
+                        document.write(`
+                            <label class="block">
+                                <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 block mb-1">${field.label}</span>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-400 sm:text-xs">৳</span></div>
+                                    <input type="number" id="${field.id}" class="sal-input sshihabb007-input w-full pl-7 p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800" value="${field.default}" min="0" oninput="calculateTotalSalary()">
+                                </div>
+                            </label>
+                        `);
+                    });
+                </script>
+                <div class="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700 mt-2">
+                    <label class="block">
+                        <span class="text-sm font-bold text-gray-900 dark:text-white">Total Salary Received</span>
+                        <input type="number" id="total_salary" readonly class="sshihabb007-input w-full mt-1 p-2 bg-gray-200 dark:bg-gray-700 rounded text-sm font-bold" value="460000">
+                    </label>
+                    <label class="block">
+                        <span class="text-sm font-bold text-gray-900 dark:text-white">Exempted Amount</span>
+                        <input type="number" id="exempted_salary" readonly class="sshihabb007-input w-full mt-1 p-2 bg-gray-200 dark:bg-gray-700 rounded text-sm font-bold" value="153333">
+                    </label>
+                    <label class="block">
+                        <span class="text-sm font-bold text-mehedi-primary dark:text-green-400">Total Income from Salary</span>
+                        <input type="number" id="shihab_salary_input" readonly class="sshihabb007-input w-full mt-1 p-2 border-2 border-mehedi-primary rounded bg-green-50 dark:bg-slate-800 text-sm font-bold" value="306667">
+                    </label>
+                </div>
+            </div>
+
+            <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-4 text-lg">Other Income Sources</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                <script>
+                    const otherIncomeFields = [
+                        { id: 'inc_rent', label: '2. Income from Rent (Schedule 2)' },
+                        { id: 'inc_agri', label: '3. Income from Agriculture (Schedule 3)' },
+                        { id: 'inc_business', label: '4. Income from Business (Schedule 4)' },
+                        { id: 'inc_capital', label: '5. Income from Capital Gain' },
+                        { id: 'inc_financial', label: '6. Income from Financial Assets (Interest, Dividend, etc.)' },
+                        { id: 'inc_other_sources', label: '7. Income from Other Sources (Royalty, License, etc.)' },
+                        { id: 'inc_firm', label: '8. Share of Income from Firm or AoP' },
+                        { id: 'inc_minor', label: '9. Income of Minor or Spouse' },
+                        { id: 'inc_abroad', label: '10. Taxable Income from Abroad' }
+                    ];
+                    otherIncomeFields.forEach(field => {
+                        document.write(`
+                            <label class="block">
+                                <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 block mb-1 truncate" title="${field.label}">${field.label}</span>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-400 sm:text-xs">৳</span></div>
+                                    <input type="number" id="${field.id}" class="other-inc-input sshihabb007-input w-full pl-7 p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800" value="0" min="0">
+                                </div>
+                            </label>
+                        `);
+                    });
+                </script>
+            </div>
+            
+            <div class="mt-8 flex flex-col-reverse sm:flex-row justify-between gap-4">
+                <button onclick="sshihabb007_next_step(1)" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-lg font-bold transition-all">← Back</button>
+                <button onclick="sshihabb007_next_step(3)" class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-bold shadow-md">Continue →</button>
+            </div>
+        </section>
+
+        <!-- Section 3: Rebate -->
+        <section id="shihab_section_3" class="mehedi-card bg-white dark:bg-gray-800 transform transition-all duration-500" style="display: none;">
+            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">Schedule-5 (Investment Tax Credit)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                <script>
+                    const rebateFields = [
+                        { id: 'reb_life_ins', label: '1. Life Insurance Premium' },
+                        { id: 'reb_dps', label: '2. Contribution to Deposit Pension Scheme (DPS)' },
+                        { id: 'reb_govt_sec', label: '3. Investment in Govt. Securities, Unit Cert, Mutual Fund' },
+                        { id: 'reb_stocks', label: '4. Investment in Securities listed with Stock Exchange' },
+                        { id: 'reb_prov_fund_1925', label: '5. Contribution to PF (Act 1925 applies)' },
+                        { id: 'reb_rpf', label: '6. Self & Employer’s Contribution to Recognized PF' },
+                        { id: 'reb_super_fund', label: '7. Contribution to Super Annuation Fund' },
+                        { id: 'reb_benevolent', label: '8. Contribution to Benevolent Fund / Group Insurance' },
+                        { id: 'reb_zakat', label: '9. Contribution to Zakat Fund' },
+                        { id: 'reb_others', label: '10. Others, if any' }
+                    ];
+                    rebateFields.forEach(field => {
+                        document.write(`
+                            <label class="block">
+                                <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 block mb-1 truncate" title="${field.label}">${field.label}</span>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-400 sm:text-xs">৳</span></div>
+                                    <input type="number" id="${field.id}" class="rebate-input sshihabb007-input w-full pl-7 p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800" value="0" min="0" oninput="calculateTotalRebate()">
+                                </div>
+                            </label>
+                        `);
+                    });
+                </script>
+                <label class="block md:col-span-2 pt-4 border-t border-gray-100 dark:border-gray-700 mt-2">
+                    <span class="text-sm font-bold text-gray-900 dark:text-white">11. Total Investment (aggregate of 1 to 10)</span>
+                    <div class="relative mt-1.5">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-900 dark:text-white sm:text-sm font-bold">৳</span></div>
+                        <input type="number" id="sshihabb007_investment_input" readonly class="sshihabb007-input w-full pl-8 p-3 border-2 border-mehedi-primary rounded bg-green-50 dark:bg-slate-800 text-lg font-bold" value="0">
+                    </div>
+                </label>
+            </div>
+            <div class="mt-8 flex flex-col-reverse sm:flex-row justify-between gap-4">
+                <button onclick="sshihabb007_next_step(2)" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-lg font-bold transition-all">← Back</button>
+                <button onclick="sshihabb007_next_step(4)" class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-bold shadow-md">Continue →</button>
+            </div>
+        </section>
+
+        <!-- Section 4: Expenditure -->
+        <section id="shihab_section_4" class="mehedi-card bg-white dark:bg-gray-800 transform transition-all duration-500" style="display: none;">
+            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">IT-10BB: Expenses Relating to Lifestyle</h2>
+            
+            <div class="space-y-4">
+                <!-- Header row for desktop -->
+                <div class="hidden md:grid grid-cols-12 gap-4 text-sm font-bold text-gray-600 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 pb-2">
+                    <div class="col-span-5">Particulars of Expenditure</div>
+                    <div class="col-span-3">Amount (Taka)</div>
+                    <div class="col-span-4">Comments</div>
+                </div>
+
+                <script>
+                    const expFields = [
+                        { id: 'exp_food', label: '1. Personal and family fooding, clothing and other essentials', default: 120000, comment: 'Per month 10000tk' },
+                        { id: 'exp_housing', label: '2. Housing Expense', default: 180000, comment: 'Per month 15000tk' },
+                        { id: 'exp_transport', label: '3. Personal Transport Expense', default: 60000, comment: 'Per month 5000' },
+                        { id: 'exp_utility', label: '4. Utility Expense (Electricity, Gas, Water, etc.)', default: 48000, comment: 'Per month 1000tk,Per month 1500tk...' },
+                        { id: 'exp_edu', label: '5. Education Expense', default: 0, comment: '' },
+                        { id: 'exp_travel', label: '6. Personal Expense for Local and Foreign Travel', default: 0, comment: '' },
+                        { id: 'exp_festival', label: '7. Festival and Other Special Expense', default: 36000, comment: 'Family tour.' },
+                        { id: 'exp_tax', label: '8. Tax Deducted / Collected at Source', default: 0, comment: '' },
+                        { id: 'exp_loan', label: '9. Interest Paid on Personal Loan', default: 0, comment: '' }
+                    ];
+                    expFields.forEach(field => {
+                        document.write(`
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 items-center pb-3 border-b border-gray-100 dark:border-gray-700">
+                                <div class="col-span-1 md:col-span-5">
+                                    <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 block">${field.label}</span>
+                                </div>
+                                <div class="col-span-1 md:col-span-3 relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-400 sm:text-xs">৳</span></div>
+                                    <input type="number" id="${field.id}" class="exp-input sshihabb007-input w-full pl-7 p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800" value="${field.default}" min="0" oninput="calculateTotalExpenditure()">
+                                </div>
+                                <div class="col-span-1 md:col-span-4">
+                                    <input type="text" placeholder="Comments" value="${field.comment}" class="sshihabb007-input w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800">
+                                </div>
+                            </div>
+                        `);
+                    });
+                </script>
+                
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center pt-4">
+                    <div class="col-span-1 md:col-span-5 text-right">
+                        <span class="text-sm font-bold text-gray-900 dark:text-white">Total Expenditure:</span>
+                    </div>
+                    <div class="col-span-1 md:col-span-3 relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-900 dark:text-white font-bold">৳</span></div>
+                        <input type="number" id="total_expenditure" readonly class="sshihabb007-input w-full pl-8 p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-200 dark:bg-gray-700 text-lg font-bold" value="444000">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex flex-col-reverse sm:flex-row justify-between gap-4">
+                <button onclick="sshihabb007_next_step(3)" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-lg font-bold transition-all">← Back</button>
+                <button onclick="sshihabb007_next_step(5)" class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-bold shadow-md">Continue →</button>
+            </div>
+        </section>
+
+        <!-- Section 5: Assets & Liabilities -->
+        <section id="shihab_section_5" class="mehedi-card bg-white dark:bg-gray-800 transform transition-all duration-500" style="display: none;">
+            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">IT-10B: Assets, Liabilities and Expenses</h2>
+            
+            <div class="space-y-8">
+                <!-- Source of Fund -->
+                <div>
+                    <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-3 border-b border-gray-200 dark:border-gray-700 pb-1">1-3. Source of Fund & Previous Wealth</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">1(a). Total Income Shown in Return</span><input type="number" id="asset_src_income" readonly value="306667" class="mt-1 w-full p-2 text-sm border rounded bg-gray-100 dark:bg-gray-700"></label>
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">1(b). Tax Exempted Income</span><input type="number" id="asset_src_exempt" value="153333" class="mt-1 w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900"></label>
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">1(c). Receipt of Gift and Others</span><input type="number" id="asset_src_gift" value="0" class="mt-1 w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900"></label>
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">2. Net Wealth as on Last Date of Previous Year</span><input type="number" id="asset_prev_wealth" value="0" class="mt-1 w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900"></label>
+                    </div>
+                </div>
+
+                <!-- Expense & Loss -->
+                <div>
+                    <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-3 border-b border-gray-200 dark:border-gray-700 pb-1">4. Expenses & Loss</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">4(a). Expense relating to Lifestyle (as per IT-10BB)</span><input type="number" id="asset_exp_lifestyle" readonly value="444000" class="mt-1 w-full p-2 text-sm border rounded bg-gray-100 dark:bg-gray-700"></label>
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">4(b). Gift / Expenses / Loss Not Mentioned in IT-10BB</span><input type="number" id="asset_exp_other" value="0" class="mt-1 w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900"></label>
+                    </div>
+                </div>
+
+                <!-- Liabilities -->
+                <div>
+                    <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-3 border-b border-gray-200 dark:border-gray-700 pb-1">6. Personal Liabilities Outside Business</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">6(a). Institutional Liabilities</span><input type="number" id="liab_inst" value="0" class="mt-1 w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900"></label>
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">6(b). Non-Institutional Liabilities</span><input type="number" id="liab_noninst" value="0" class="mt-1 w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900"></label>
+                        <label class="block"><span class="text-xs font-semibold text-gray-700 dark:text-gray-300">6(c). Other Liabilities</span><input type="number" id="liab_other" value="0" class="mt-1 w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900"></label>
+                    </div>
+                </div>
+
+                <!-- Assets Particulars -->
+                <div>
+                    <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-3 border-b border-gray-200 dark:border-gray-700 pb-1">8-9. Particulars of Assets</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                        <script>
+                            const assetFields = [
+                                { id: 'ast_business', label: '8(a). Total Asset of Business (Less Liabilities)', hasDesc: false },
+                                { id: 'ast_director', label: '8(b). Director’s Shareholdings', hasDesc: false },
+                                { id: 'ast_partnership', label: '8(c). Business Capital of Partnership Firm', hasDesc: false },
+                                { id: 'ast_nonagri', label: '8(d). Non-Agricultural Property', hasDesc: true, descPh: 'Location and Description' },
+                                { id: 'ast_agri', label: '8(e). Agricultural Property', hasDesc: true, descPh: 'Location and Description' },
+                                { id: 'ast_financial_share', label: '8(f)(i). Share/Debenture/Securities', hasDesc: false },
+                                { id: 'ast_financial_sanchaypatra', label: '8(f)(ii). Sanchaypatra / DPS', hasDesc: false },
+                                { id: 'ast_financial_loan', label: '8(f)(iii). Loan Given', hasDesc: true, descPh: 'Name & NID of Loan Receiver' },
+                                { id: 'ast_financial_deposit', label: '8(f)(iv). Savings / Term Deposit', hasDesc: false },
+                                { id: 'ast_financial_pf', label: '8(f)(v). Provident Fund', hasDesc: false },
+                                { id: 'ast_financial_other', label: '8(f)(vi). Other Investment', hasDesc: false },
+                                { id: 'ast_motor', label: '8(g). Motor Vehicle(s)', hasDesc: true, descPh: 'Type and Registration Number' },
+                                { id: 'ast_ornaments', label: '8(h). Ornaments', hasDesc: true, descPh: 'Mention Quantity' },
+                                { id: 'ast_furniture', label: '8(i). Furniture and Electronic Items', hasDesc: false },
+                                { id: 'ast_other_assets', label: '8(j). Other Assets (Except Assets in Sl. k)', hasDesc: false },
+                                { id: 'ast_cash_bank', label: '8(k)(i). Bank Balance', hasDesc: false },
+                                { id: 'ast_cash_hand', label: '8(k)(ii). Cash in Hand', hasDesc: false },
+                                { id: 'ast_cash_others', label: '8(k)(iii). Others', hasDesc: false },
+                                { id: 'ast_abroad', label: '9. Assets Outside Bangladesh', hasDesc: false }
+                            ];
+                            assetFields.forEach(field => {
+                                let descInput = field.hasDesc ? `<input type="text" placeholder="${field.descPh}" class="w-full mt-1.5 p-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-slate-800 focus:bg-white dark:focus:bg-gray-700">` : '';
+                                document.write(`
+                                    <label class="block">
+                                        <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 block mb-1 truncate" title="${field.label}">${field.label}</span>
+                                        <div class="flex flex-col">
+                                            <input type="number" id="${field.id}" class="w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800" value="0">
+                                            ${descInput}
+                                        </div>
+                                    </label>
+                                `);
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col-reverse sm:flex-row justify-between gap-4">
+                <button onclick="sshihabb007_next_step(4)" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-lg font-bold transition-all">← Back</button>
+                <button onclick="sshihabb007_next_step(6)" class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-bold shadow-md">Calculate Tax Report →</button>
+            </div>
+        </section>
+
+        <!-- Section 6: Final Report -->
+        <section id="shihab_section_6" class="mehedi-card bg-white dark:bg-gray-800 transform transition-all duration-500" style="display: none;">
+            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">Tax Computation & Payment</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Tax Computation -->
+                <div class="space-y-4 p-5 bg-gray-50 dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-2">Tax Computation</h3>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">11. Total Taxable Income:</span>
+                        <span id="mehedi_taxable_display" class="font-bold">0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">12. Gross Tax on Taxable Income:</span>
+                        <span id="mehedi_tax_liability_display" class="font-bold">0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">13. Tax Rebate (Schedule 5):</span>
+                        <span id="sshihabb007_rebate_display" class="font-bold text-green-600 dark:text-green-400">0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">14. Net Tax after Rebate:</span>
+                        <span id="mehedi_net_tax_display" class="font-bold">0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">15. Minimum Tax:</span>
+                        <input type="number" id="tax_minimum" value="0" class="w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800">
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">16. Tax Payable (Higher of 14/15):</span>
+                        <span id="mehedi_payable_display" class="font-bold text-red-600 dark:text-red-400">0.00</span>
+                    </div>
+                    <div class="pt-2 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-400">17(a). Net Wealth Surcharge:</span>
+                            <input type="number" id="tax_surcharge_wealth" value="0" class="surcharge-input w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800" oninput="calculatePayment()">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-400">17(b). Tobacco Surcharge:</span>
+                            <input type="number" id="tax_surcharge_tobacco" value="0" class="surcharge-input w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800" oninput="calculatePayment()">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-400">17(c). Environmental Surcharge:</span>
+                            <input type="number" id="tax_surcharge_env" value="0" class="surcharge-input w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800" oninput="calculatePayment()">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-400">18. Delay Interest, Penalty:</span>
+                            <input type="number" id="tax_penalty" value="0" class="w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-300 dark:border-gray-600">
+                        <span class="font-extrabold text-lg">19. Total Amount Payable:</span>
+                        <span id="mehedi_final_tax_display" class="font-extrabold text-2xl text-red-600 dark:text-red-400">0.00</span>
+                    </div>
+                </div>
+
+                <!-- Particulars of Tax Payment -->
+                <div class="space-y-4 p-5 bg-gray-50 dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-2">Particulars of Tax Payment</h3>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">20. Tax Deducted/Collected at Source:</span>
+                        <input type="number" id="pay_tds" value="0" class="pay-input w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800" oninput="calculatePayment()">
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">21. Advance Tax paid:</span>
+                        <input type="number" id="pay_advance" value="0" class="pay-input w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800" oninput="calculatePayment()">
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">22. Adjustment of Tax Refund:</span>
+                        <input type="number" id="pay_refund" value="0" class="pay-input w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800" oninput="calculatePayment()">
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">23. Tax Paid with this Return:</span>
+                        <input type="number" id="pay_with_return" value="0" class="pay-input w-24 p-1 text-right text-sm border rounded bg-white dark:bg-slate-800" oninput="calculatePayment()">
+                    </div>
+                    <div class="flex justify-between items-center pt-2">
+                        <span class="font-bold">24. Total Tax Paid and Adjusted:</span>
+                        <span id="total_paid_display" class="font-bold text-green-600 dark:text-green-400">0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-300 dark:border-gray-600">
+                        <span class="font-extrabold text-lg">25. Excess Payment (Refund):</span>
+                        <span id="excess_payment_display" class="font-extrabold text-2xl text-blue-600 dark:text-blue-400">0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verification -->
+            <div class="mt-8 p-6 bg-gray-100 dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                <h3 class="font-bold text-mehedi-primary dark:text-green-400 mb-4 border-b border-gray-300 dark:border-gray-600 pb-2">Verification</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+                    I <span class="font-bold">MD. MEHEDI HASAN SHIHAB</span>, TIN <span class="font-bold">636171778047</span>, solemnly declare that to the best of my knowledge and belief the information given in this return and statements and documents annexed herewith is correct and complete.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <label class="block">
+                        <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Place</span>
+                        <input type="text" class="sshihabb007-input w-full mt-2 p-2.5 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800" placeholder="e.g. Dhaka">
+                    </label>
+                    <label class="block">
+                        <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Date</span>
+                        <input type="date" value="2026-08-03" class="sshihabb007-input w-full mt-2 p-2.5 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-slate-900 focus:bg-white dark:focus:bg-gray-800">
+                    </label>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-between">
+                <button onclick="sshihabb007_next_step(5)" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-lg font-bold transition-all w-full sm:w-auto text-center">
+                    ← Back
+                </button>
+                <button onclick="mehedi_adjust_to_zero()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold transition-all shadow-md w-full sm:w-auto text-center flex items-center justify-center gap-2 group">
+                    <span class="group-hover:rotate-12 transition-transform">✨</span> Auto-Adjust Investment for Zero Tax
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Logic -->
+    <script>
+        function mehedi_toggle_theme() {
+            document.body.classList.toggle('sshihabb007_dark_mode');
+        }
+
+        function calculateTotalSalary() {
+            const inputs = document.querySelectorAll('.sal-input');
+            let total = 0;
+            inputs.forEach(input => { total += parseFloat(input.value) || 0; });
+            document.getElementById('total_salary').value = total;
+            
+            // Exemption is typically 1/3 of salary or 4.5L
+            const exemption = Math.min(total / 3, 450000);
+            document.getElementById('exempted_salary').value = Math.round(exemption);
+            document.getElementById('shihab_salary_input').value = Math.max(0, Math.round(total - exemption));
+            document.getElementById('asset_src_exempt').value = Math.round(exemption); // Link to asset source
+        }
+
+        function calculateTotalRebate() {
+            const inputs = document.querySelectorAll('.rebate-input');
+            let total = 0;
+            inputs.forEach(input => { total += parseFloat(input.value) || 0; });
+            document.getElementById('sshihabb007_investment_input').value = total;
+        }
+
+        function calculateTotalExpenditure() {
+            const inputs = document.querySelectorAll('.exp-input');
+            let total = 0;
+            inputs.forEach(input => { total += parseFloat(input.value) || 0; });
+            document.getElementById('total_expenditure').value = total;
+            document.getElementById('asset_exp_lifestyle').value = total; // Link to Asset section
+        }
+
+        function calculatePayment() {
+            const inputs = document.querySelectorAll('.pay-input');
+            let total = 0;
+            inputs.forEach(input => { total += parseFloat(input.value) || 0; });
+            document.getElementById('total_paid_display').innerText = total.toLocaleString('en-IN') + ' BDT';
+            
+            // Recalculate excess
+            const payableStr = document.getElementById('mehedi_final_tax_display').innerText.replace(/,/g, '');
+            const payable = parseFloat(payableStr) || 0;
+            const excess = Math.max(0, total - payable);
+            document.getElementById('excess_payment_display').innerText = excess.toLocaleString('en-IN') + ' BDT';
+        }
+
+        function sshihabb007_next_step(stepNumber) {
+            for (let i = 1; i <= 6; i++) {
+                const sec = document.getElementById('shihab_section_' + i);
+                if (sec) sec.style.display = 'none';
+            }
+            const targetSec = document.getElementById('shihab_section_' + stepNumber);
+            if (targetSec) {
+                targetSec.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            const progressWidth = ['16.6%', '33.3%', '50%', '66.6%', '83.3%', '100%'];
+            document.getElementById('shihab_step_indicator').style.width = progressWidth[stepNumber - 1];
+            
+            if (stepNumber === 6) sshihabb007_calculate_tax();
+        }
+
+        function sshihabb007_calculate_tax() {
+            // Ensure derived values are fresh
+            calculateTotalSalary();
+            calculateTotalRebate();
+            
+            // Aggregate Income
+            const salaryInc = parseFloat(document.getElementById('shihab_salary_input').value) || 0;
+            let otherInc = 0;
+            document.querySelectorAll('.other-inc-input').forEach(input => {
+                otherInc += parseFloat(input.value) || 0;
+            });
+            const taxableIncome = salaryInc + otherInc;
+            
+            // Update Asset Source of Fund automatically
+            document.getElementById('asset_src_income').value = taxableIncome;
+
+            // Apply Slabs
+            let taxLiability = 0;
+            let remaining = taxableIncome;
+            const threshold = document.getElementById('mehedi_taxpayer_status').value === 'female' ? 400000 : 350000; 
+            
+            if (remaining > threshold) {
+                remaining -= threshold;
+                if (remaining > 0) { let slab = Math.min(remaining, 100000); taxLiability += slab * 0.05; remaining -= slab; }
+                if (remaining > 0) { let slab = Math.min(remaining, 300000); taxLiability += slab * 0.10; remaining -= slab; }
+                if (remaining > 0) { let slab = Math.min(remaining, 400000); taxLiability += slab * 0.15; remaining -= slab; }
+                if (remaining > 0) { let slab = Math.min(remaining, 500000); taxLiability += slab * 0.20; remaining -= slab; }
+                if (remaining > 0) { taxLiability += remaining * 0.25; }
+            }
+            
+            // Rebate calculation
+            const totalInvestments = parseFloat(document.getElementById('sshihabb007_investment_input').value) || 0;
+            const rebate = totalInvestments * 0.15;
+            
+            let netTax = Math.max(0, taxLiability - rebate);
+            const minimumTax = parseFloat(document.getElementById('tax_minimum').value) || 0;
+            let payable = Math.max(netTax, minimumTax);
+            
+            let surcharge = 0;
+            document.querySelectorAll('.surcharge-input').forEach(input => {
+                surcharge += parseFloat(input.value) || 0;
+            });
+            const penalty = parseFloat(document.getElementById('tax_penalty').value) || 0;
+            const finalPayable = payable + surcharge + penalty;
+            
+            // Update UI
+            const fmt = (v) => Math.round(v).toLocaleString('en-IN');
+            document.getElementById('mehedi_taxable_display').innerText = fmt(taxableIncome);
+            document.getElementById('mehedi_tax_liability_display').innerText = fmt(taxLiability);
+            document.getElementById('sshihabb007_rebate_display').innerText = fmt(rebate);
+            document.getElementById('mehedi_net_tax_display').innerText = fmt(netTax);
+            document.getElementById('mehedi_payable_display').innerText = fmt(payable);
+            document.getElementById('mehedi_final_tax_display').innerText = fmt(finalPayable);
+            
+            calculatePayment(); // Trigger excess calculation
+            
+            return { taxLiability, finalPayable };
+        }
+
+        function mehedi_adjust_to_zero() {
+            // 1. Clear all current investments for fresh calc
+            const rebateIds = ['reb_life_ins', 'reb_dps', 'reb_govt_sec', 'reb_stocks', 'reb_prov_fund_1925', 'reb_rpf', 'reb_super_fund', 'reb_benevolent', 'reb_zakat', 'reb_others'];
+            rebateIds.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.value = 0;
+            });
+            calculateTotalRebate();
+            
+            // Get raw tax without any rebate
+            const res = sshihabb007_calculate_tax();
+            const rawTax = res.taxLiability;
+            let requiredInv = 0;
+            
+            if (rawTax > 0) {
+                requiredInv = Math.ceil(rawTax / 0.15);
+            }
+
+            // 2. Distribute Investment wisely to kill the tax
+            let remainingInv = requiredInv;
+            let dpsInv = 0;
+            let stockInv = 0;
+            
+            if (remainingInv > 0) {
+                // Max DPS allowed for tax rebate usually 1,20,000/year (10,000/month)
+                dpsInv = Math.min(remainingInv, 120000);
+                remainingInv -= dpsInv;
+                document.getElementById('reb_dps').value = dpsInv;
+            }
+            if (remainingInv > 0) {
+                // Put the remaining required investment into Approved Stocks/Sanchaypatra
+                stockInv = remainingInv;
+                document.getElementById('reb_stocks').value = stockInv;
+            }
+            calculateTotalRebate();
+            sshihabb007_calculate_tax(); // Recalculate tax with new rebate
+
+            // 3. Balance IT-10B and IT-10BB
+            // Total Income = Taxable + Exempt
+            const taxableIncome = parseFloat(document.getElementById('mehedi_taxable_display').innerText.replace(/,/g, '')) || 0;
+            const exemptIncome = parseFloat(document.getElementById('asset_src_exempt').value) || 0;
+            const totalSource = taxableIncome + exemptIncome;
+            
+            // Register these new investments into Assets (IT-10B)
+            document.getElementById('ast_financial_sanchaypatra').value = dpsInv;
+            document.getElementById('ast_financial_share').value = stockInv;
+            
+            // 4. Distribute Remaining Cash to Expenses (IT-10BB)
+            // To make Net Wealth perfectly match the Investments with NO unexplained cash:
+            // Expense = Total Source - Investments
+            let requiredExpense = totalSource - requiredInv;
+            
+            if (requiredExpense > 0) {
+                document.getElementById('exp_food').value = Math.round(requiredExpense * 0.40);
+                document.getElementById('exp_housing').value = Math.round(requiredExpense * 0.30);
+                document.getElementById('exp_transport').value = Math.round(requiredExpense * 0.10);
+                document.getElementById('exp_utility').value = Math.round(requiredExpense * 0.10);
+                document.getElementById('exp_festival').value = requiredExpense - (Math.round(requiredExpense * 0.40) + Math.round(requiredExpense * 0.30) + Math.round(requiredExpense * 0.10) + Math.round(requiredExpense * 0.10));
+                
+                // Set other expenses to 0
+                document.getElementById('exp_edu').value = 0;
+                document.getElementById('exp_travel').value = 0;
+                document.getElementById('exp_tax').value = 0;
+                document.getElementById('exp_loan').value = 0;
+                
+                calculateTotalExpenditure(); // Update the UI total
+                // Important: Trigger the tax calculation again to ensure asset links update
+                sshihabb007_calculate_tax();
+            }
+
+            alert("✨ Magic Complete! Your income has been perfectly distributed:\n\n" +
+                  "1. Tax adjusted to ZERO using realistic DPS & Stock Investments.\n" +
+                  "2. IT-10B Assets automatically updated with these investments.\n" +
+                  "3. Remaining cash mathematically distributed across Lifestyle Expenses (IT-10BB).\n\n" +
+                  "Your Net Wealth now perfectly balances with no unexplained shortages! You can confidently copy these numbers into the portal.");
+        }
+    </script>
+</body>
+</html>
